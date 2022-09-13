@@ -1,23 +1,29 @@
-// import css from './FriendList.module.css';
-// import friends from './FriendList/friends';
 import PropTypes from 'prop-types';
 
-export const FriendList = ({ friends }) => {
-  // console.log(friends);
+import css from './FriendList.module.css';
+
+const FriendList = ({ data }) => {
   return (
     <ul>
-      {friends.map(friend => (
-        <li key={friend.id}>
-          <FriendList
-            avatar={friend.avatar}
-            name={friend.name}
-            isOnline={friend.isOnline}
+      {data.map(friend => (
+        <li key={friend.id} className={css.item}>
+          <span
+            className={`${css.status} ${friend.isOnline ? css.online : false}`}
+          ></span>
+          <img
+            className={css.avatar}
+            width="45"
+            src={friend.avatar}
+            alt="userAvatar"
           />
+          <span className={css.name}>{friend.name}</span>
         </li>
       ))}
     </ul>
   );
 };
+
+export default FriendList;
 
 Event.PropTypes = {
   friends: PropTypes.arrayOf(
