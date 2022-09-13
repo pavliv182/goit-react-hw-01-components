@@ -25,7 +25,11 @@ const FriendList = ({ data }) => {
 
 export default FriendList;
 
-Event.PropTypes = {
+FriendList.defaultProps = {
+  data: [],
+};
+
+FriendList.propTypes = {
   friends: PropTypes.arrayOf(
     PropTypes.shape({
       avatar: PropTypes.string.isRequired,
