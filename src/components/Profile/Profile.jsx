@@ -2,16 +2,7 @@ import css from './Profile.module.css';
 
 import PropTypes from 'prop-types';
 
-export const Profile = ({
-  username,
-  tag,
-  location,
-  avatar,
-  stats,
-  followers,
-  views,
-  likes,
-}) => {
+const Profile = ({ avatar, username, tag, location, stats }) => {
   return (
     <div className={css.profile}>
       <div className={css.description}>
@@ -21,30 +12,34 @@ export const Profile = ({
         <p className={css.location}>{location}</p>
       </div>
 
-      <ul className={stats}>
-        <li>
-          <span className={css.followers}>Followers</span>
-          <span className="quantity">{followers}</span>
+      <ul className={css.stats}>
+        <li className={css.item}>
+          <span className={css.label}>Followers</span>
+          <span className={css.quantity}>{stats.followers}</span>
         </li>
-        <li>
-          <span className={css.views}>Views</span>
-          <span className="quantity">{views}</span>
+        <li className={css.item}>
+          <span className={css.label}>Views</span>
+          <span className={css.quantity}>{stats.views}</span>
         </li>
-        <li>
-          <span className={css.likes}>Likes</span>
-          <span className="quantity">{likes}</span>
+        <li className={css.item}>
+          <span className={css.label}>Likes</span>
+          <span className={css.quantity}>{stats.likes}</span>
         </li>
       </ul>
     </div>
   );
 };
 
-Event.PropTypes = {
+export default Profile;
+
+Profile.propTypes = {
   avatar: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
   tag: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
-  followers: PropTypes.number.isRequired,
-  views: PropTypes.number.isRequired,
-  likes: PropTypes.number.isRequired,
+  stats: PropTypes.shape({
+    followers: PropTypes.number.isRequired,
+    likes: PropTypes.number.isRequired,
+    views: PropTypes.number.isRequired,
+  }),
 };
